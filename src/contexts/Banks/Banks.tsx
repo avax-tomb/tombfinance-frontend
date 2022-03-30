@@ -11,6 +11,7 @@ const Banks: React.FC = ({ children }) => {
 
   const fetchPools = useCallback(async () => {
     const banks: Bank[] = [];
+    const now = Date.now();
 
     for (const bankInfo of Object.values(bankDefinitions)) {
       if (bankInfo.finished) {
@@ -26,11 +27,26 @@ const Banks: React.FC = ({ children }) => {
           continue;
         }
       }
+      let closedForStaking: boolean = true;
+      switch (bankInfo.contract) {
+        case 'GenesisPool':
+        case 'TombRewardPool':
+          if (now < config.bondLaunchesAt.getTime()) {
+            closedForStaking = false;
+          }
+          break;
+        default:
+          if (now >= config.bondLaunchesAt.getTime()) {
+            closedForStaking = false;
+          }
+          break;
+      }
       banks.push({
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,
         depositToken: tombFinance.externalTokens[bankInfo.depositTokenName],
         earnToken: bankInfo.earnTokenName === 'TOMB' ? tombFinance.TOMB : tombFinance.TSHARE,
+        closedForStaking,
       });
     }
     banks.sort((a, b) => (a.sort > b.sort ? 1 : -1));

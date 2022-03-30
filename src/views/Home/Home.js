@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
-import HomeImage from '../../assets/img/home.png';
+import HomeImage from '../../assets/img/background.jpg';
 import CashImage from '../../assets/img/crypto_tomb_cash.svg';
 import Image from 'material-ui-image';
 import { createGlobalStyle } from 'styled-components';
@@ -14,8 +14,8 @@ import useZap from '../../hooks/useZap';
 import useBondStats from '../../hooks/useBondStats';
 import usetShareStats from '../../hooks/usetShareStats';
 import useTotalValueLocked from '../../hooks/useTotalValueLocked';
-import { tomb as tombTesting, tShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
-import { tomb as tombProd, tShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
+import { Tomb as tombTesting, TShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
+import { Tomb as tombProd, TShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
 
 import MetamaskFox from '../../assets/img/metamask-fox.svg';
 

@@ -10,10 +10,11 @@ import { Alert } from '@material-ui/lab';
 import UnlockWallet from '../../components/UnlockWallet';
 import Page from '../../components/Page';
 import CemeteryCard from './CemeteryCard';
-import CemeteryImage from '../../assets/img/cemetery.png';
+import CemeteryImage from '../../assets/img/background.jpg';
 import { createGlobalStyle } from 'styled-components';
 
 import useBanks from '../../hooks/useBanks';
+import config from '../../config';
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -58,9 +59,11 @@ const Cemetery = () => {
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
                     Earn TOMB by staking LP
                   </Typography>
-                  <Alert variant="filled" severity="warning">
-                    All below pools have ended. Please unstake and collect your rewards.
-                  </Alert>
+                  {config.bondLaunchesAt.getTime() < Date.now() && (
+                    <Alert variant="filled" severity="warning">
+                      All below pools have ended. Please unstake and collect your rewards.
+                    </Alert>
+                  )}
                   <Grid container spacing={3} style={{ marginTop: '20px' }}>
                     {activeBanks
                       .filter((bank) => bank.sectionInUI === 1)
@@ -92,7 +95,7 @@ const Cemetery = () => {
             <UnlockWallet />
           )}
         </Route>
-        <Route path={`${path}/:bankId`}>
+        <Route path={`${path}/:type/:bankId`}>
           <BackgroundImage />
           <Bank />
         </Route>

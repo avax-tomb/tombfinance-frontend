@@ -30,8 +30,8 @@ const useStyles = makeStyles((theme) => ({
 const Bank: React.FC = () => {
   useEffect(() => window.scrollTo(0, 0));
   const classes = useStyles();
-  const { bankId } = useParams();
-  const bank = useBank(bankId);
+  const { type, bankId } = useParams();
+  const bank = useBank(type, bankId);
 
   const { account } = useWallet();
   const { onRedeem } = useRedeem(bank);

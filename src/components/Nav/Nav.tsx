@@ -50,11 +50,13 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     flexWrap: 'wrap',
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   toolbarTitle: {
-    fontFamily: '"Amarante", cursive',
+    // fontFamily: '"Amarante", cursive',
     fontSize: '30px',
-    flexGrow: 1,
+    // flexGrow: 1,
   },
   link: {
     textTransform: 'uppercase',
