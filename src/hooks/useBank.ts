@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Context as BanksContext } from '../contexts/Banks';
-import { Bank, ContractName } from '../tomb-finance';
+import { Bank } from '../tomb-finance';
 
-const useBank = (sectionUI: string, contractName: ContractName): Bank => {
+const useBank = (sectionInUI: Number, poolId: Number): Bank => {
   const { banks } = useContext(BanksContext);
-  return banks.find((bank) => bank.depositTokenName === contractName && bank.sectionInUI == Number(sectionUI));
+  return banks.find((bank) => bank.sectionInUI == sectionInUI && bank.poolId === poolId);
 };
 
 export default useBank;

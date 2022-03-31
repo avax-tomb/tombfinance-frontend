@@ -14,6 +14,7 @@ import useHarvestFromMasonry from '../../../hooks/useHarvestFromMasonry';
 import useEarningsOnMasonry from '../../../hooks/useEarningsOnMasonry';
 import useTombStats from '../../../hooks/useTombStats';
 import { getDisplayBalance } from '../../../utils/formatBalance';
+import { TOMB_TICKER } from '../../../utils/constants'
 
 const Harvest: React.FC = () => {
   const tombStats = useTombStats();
@@ -37,11 +38,11 @@ const Harvest: React.FC = () => {
           <StyledCardContentInner>
             <StyledCardHeader>
               <CardIcon>
-                <TokenSymbol symbol="TOMB" />
+                <TokenSymbol symbol={TOMB_TICKER} />
               </CardIcon>
               <Value value={getDisplayBalance(earnings)} />
               <Label text={`≈ $${earnedInDollars}`} />
-              <Label text="TOMB Earned" />
+              <Label text={`${TOMB_TICKER} Earned`} />
             </StyledCardHeader>
             <StyledCardActions>
               <Button

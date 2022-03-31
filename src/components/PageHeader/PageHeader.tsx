@@ -22,7 +22,7 @@ const StyledPageHeader = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: ${(props) => props.theme.spacing[6]}px;
-  padding-top: ${(props) => props.theme.spacing[6]}px;
+  // padding-top: ${(props) => props.theme.spacing[6]}px;
   max-width: 512px;
   width: 100%;
   margin: 0 auto;
@@ -31,7 +31,8 @@ const StyledPageHeader = styled.div`
 const StyledTitle = styled.h1`
   color: ${(props) => props.theme.color.grey[100]};
   font-size: 36px;
-  font-weight: 700;
+  font-weight: 400;
+  text-align: center;
   margin: 0;
   padding: 0;
 `;

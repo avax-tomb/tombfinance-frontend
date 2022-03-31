@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import Page from '../../components/Page';
 import HomeImage from '../../assets/img/background.jpg';
-import CashImage from '../../assets/img/crypto_tomb_cash.svg';
+import CashImage from '../../assets/img/logo.png';
 import Image from 'material-ui-image';
 import { createGlobalStyle } from 'styled-components';
 import CountUp from 'react-countup';
@@ -17,13 +17,14 @@ import useTotalValueLocked from '../../hooks/useTotalValueLocked';
 import { Tomb as tombTesting, TShare as tShareTesting } from '../../tomb-finance/deployments/deployments.testing.json';
 import { Tomb as tombProd, TShare as tShareProd } from '../../tomb-finance/deployments/deployments.mainnet.json';
 
-import MetamaskFox from '../../assets/img/metamask-fox.svg';
+import MetamaskFox from '../../assets/img/wallet/metamask-fox.svg';
 
 import { Box, Button, Card, CardContent, Grid, Paper } from '@material-ui/core';
 import ZapModal from '../Bank/components/ZapModal';
 
 import { makeStyles } from '@material-ui/core/styles';
 import useTombFinance from '../../hooks/useTombFinance';
+import { TOMB_TICKER, TSHARE_TICKER, TBOND_TICKER } from '../../utils/constants'
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -43,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
   const classes = useStyles();
   const TVL = useTotalValueLocked();
-  const tombFtmLpStats = useLpStats('TOMB-FTM-LP');
-  const tShareFtmLpStats = useLpStats('TSHARE-FTM-LP');
+  const tombFtmLpStats = useLpStats(`${TOMB_TICKER}-FTM-LP`);
+  const tShareFtmLpStats = useLpStats(`${TSHARE_TICKER}-FTM-LP`);
   const tombStats = useTombStats();
   const tShareStats = usetShareStats();
   const tBondStats = useBondStats();
@@ -98,8 +99,8 @@ const Home = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-  const tombLpZap = useZap({ depositTokenName: 'TOMB-FTM-LP' });
-  const tshareLpZap = useZap({ depositTokenName: 'TSHARE-FTM-LP' });
+  const tombLpZap = useZap({ depositTokenName: `${TOMB_TICKER}-FTM-LP` });
+  const tshareLpZap = useZap({ depositTokenName: `${TSHARE_TICKER}-FTM-LP` });
 
   const [onPresentTombZap, onDissmissTombZap] = useModal(
     <ZapModal
@@ -109,7 +110,7 @@ const Home = () => {
         tombLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTombZap();
       }}
-      tokenName={'TOMB-FTM-LP'}
+      tokenName={`${TOMB_TICKER}-FTM-LP`}
     />,
   );
 
@@ -121,7 +122,7 @@ const Home = () => {
         tshareLpZap.onZap(zappingToken, tokenName, amount);
         onDissmissTshareZap();
       }}
-      tokenName={'TSHARE-FTM-LP'}
+      tokenName={`${TSHARE_TICKER}-FTM-LP`}
     />,
   );
 
@@ -138,10 +139,10 @@ const Home = () => {
         <Grid item xs={12} sm={8}>
           <Paper>
             <Box p={4}>
-              <h2>Welcome to Tomb Finance</h2>
+              <h2>Welcome to Ranch Finance</h2>
               <p>The first algorithmic stablecoin on Fantom Opera, pegged to the price of 1 FTM via seigniorage.</p>
               <p>
-                Stake your TSHARE in the Masonry to earn inflationary TOMB rewards or provide liquidity on pairs and
+                Stake your {TSHARE_TICKER} in the Masonry to earn inflationary {TOMB_TICKER} rewards or provide liquidity on pairs and
                 start earning today!
               </p>
             </Box>
@@ -176,10 +177,10 @@ const Home = () => {
                 variant="contained"
                 style={{ marginRight: '10px' }}
               >
-                Buy TOMB
+                Buy {TOMB_TICKER}
               </Button>
               <Button variant="contained" target="_blank" href={buyTShareAddress} className={classes.button}>
-                Buy TSHARE
+                Buy {TSHARE_TICKER}
               </Button>
             </CardContent>
           </Card>
@@ -189,10 +190,10 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TOMB</h2>
+              <h2>{TOMB_TICKER}</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TOMB');
+                  tombFinance.watchAssetInMetamask(TOMB_TICKER);
                 }}
                 color="primary"
                 variant="outlined"
@@ -203,7 +204,7 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB" />
+                  <TokenSymbol symbol={TOMB_TICKER} />
                 </CardIcon>
               </Box>
               Current Price
@@ -228,10 +229,10 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TSHARE</h2>
+              <h2>{TSHARE_TICKER}</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TSHARE');
+                  tombFinance.watchAssetInMetamask(TSHARE_TICKER);
                 }}
                 color="primary"
                 variant="outlined"
@@ -242,7 +243,7 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE" />
+                  <TokenSymbol symbol={TSHARE_TICKER} />
                 </CardIcon>
               </Box>
               Current Price
@@ -265,10 +266,10 @@ const Home = () => {
         <Grid item xs={12} sm={4}>
           <Card>
             <CardContent align="center" style={{ position: 'relative' }}>
-              <h2>TBOND</h2>
+              <h2>{TBOND_TICKER}</h2>
               <Button
                 onClick={() => {
-                  tombFinance.watchAssetInMetamask('TBOND');
+                  tombFinance.watchAssetInMetamask(TBOND_TICKER);
                 }}
                 color="primary"
                 variant="outlined"
@@ -279,7 +280,7 @@ const Home = () => {
               </Button>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TBOND" />
+                  <TokenSymbol symbol={TBOND_TICKER} />
                 </CardIcon>
               </Box>
               Current Price
@@ -300,10 +301,10 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
-              <h2>TOMB-FTM Spooky LP</h2>
+              <h2>{TOMB_TICKER}-FTM Spooky LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TOMB-FTM-LP" />
+                  <TokenSymbol symbol={`${TOMB_TICKER}-FTM-LP`} />
                 </CardIcon>
               </Box>
               <Box mt={2}>
@@ -313,7 +314,7 @@ const Home = () => {
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} TOMB /{' '}
+                  {tombLPStats?.tokenAmount ? tombLPStats?.tokenAmount : '-.--'} {TOMB_TICKER} /{' '}
                   {tombLPStats?.ftmAmount ? tombLPStats?.ftmAmount : '-.--'} FTM
                 </span>
               </Box>
@@ -328,10 +329,10 @@ const Home = () => {
         <Grid item xs={12} sm={6}>
           <Card>
             <CardContent align="center">
-              <h2>TSHARE-FTM Spooky LP</h2>
+              <h2>{TSHARE_TICKER}-FTM Spooky LP</h2>
               <Box mt={2}>
                 <CardIcon>
-                  <TokenSymbol symbol="TSHARE-FTM-LP" />
+                  <TokenSymbol symbol={`${TSHARE_TICKER}-FTM-LP`} />
                 </CardIcon>
               </Box>
               <Box mt={2}>
@@ -345,7 +346,7 @@ const Home = () => {
               </Box>
               <Box mt={2}>
                 <span style={{ fontSize: '26px' }}>
-                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} TSHARE /{' '}
+                  {tshareLPStats?.tokenAmount ? tshareLPStats?.tokenAmount : '-.--'} {TSHARE_TICKER} /{' '}
                   {tshareLPStats?.ftmAmount ? tshareLPStats?.ftmAmount : '-.--'} FTM
                 </span>
               </Box>

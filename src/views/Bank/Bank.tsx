@@ -17,6 +17,7 @@ import useStatsForPool from '../../hooks/useStatsForPool';
 import useRedeem from '../../hooks/useRedeem';
 import { Bank as BankEntity } from '../../tomb-finance';
 import useTombFinance from '../../hooks/useTombFinance';
+import { TOMB_TICKER, TSHARE_TICKER } from '../../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   gridItem: {
@@ -30,8 +31,8 @@ const useStyles = makeStyles((theme) => ({
 const Bank: React.FC = () => {
   useEffect(() => window.scrollTo(0, 0));
   const classes = useStyles();
-  const { type, bankId } = useParams();
-  const bank = useBank(type, bankId);
+  const { sectionInUI, poolId } = useParams();
+  const bank = useBank(Number(sectionInUI), Number(poolId));
 
   const { account } = useWallet();
   const { onRedeem } = useRedeem(bank);
@@ -106,11 +107,11 @@ const LPTokenHelpText: React.FC<{ bank: BankEntity }> = ({ bank }) => {
 
   let pairName: string;
   let uniswapUrl: string;
-  if (bank.depositTokenName.includes('TOMB')) {
-    pairName = 'TOMB-FTM pair';
+  if (bank.depositTokenName.includes(TOMB_TICKER)) {
+    pairName = `${TOMB_TICKER}-FTM pair`;
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tombAddr;
   } else {
-    pairName = 'TSHARE-FTM pair';
+    pairName = `${TSHARE_TICKER}-FTM pair`;
     uniswapUrl = 'https://spookyswap.finance/add/FTM/' + tshareAddr;
   }
   return (

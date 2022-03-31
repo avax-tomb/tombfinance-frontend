@@ -15,6 +15,7 @@ import { createGlobalStyle } from 'styled-components';
 
 import useBanks from '../../hooks/useBanks';
 import config from '../../config';
+import { TOMB_TICKER, TSHARE_TICKER } from '../../utils/constants'
 
 const BackgroundImage = createGlobalStyle`
   body {
@@ -42,7 +43,7 @@ const Cemetery = () => {
               <Box mt={5}>
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 2).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom>
-                    Earn TSHARE by staking LP
+                    Earn {TSHARE_TICKER} by staking LP
                   </Typography>
                   <Grid container spacing={3}>
                     {activeBanks
@@ -57,7 +58,7 @@ const Cemetery = () => {
 
                 <div hidden={activeBanks.filter((bank) => bank.sectionInUI === 1).length === 0}>
                   <Typography color="textPrimary" variant="h4" gutterBottom style={{ marginTop: '20px' }}>
-                    Earn TOMB by staking LP
+                    Earn {TOMB_TICKER} by staking LP
                   </Typography>
                   {config.bondLaunchesAt.getTime() < Date.now() && (
                     <Alert variant="filled" severity="warning">
@@ -95,7 +96,7 @@ const Cemetery = () => {
             <UnlockWallet />
           )}
         </Route>
-        <Route path={`${path}/:type/:bankId`}>
+        <Route path={`${path}/:sectionInUI/:poolId`}>
           <BackgroundImage />
           <Bank />
         </Route>

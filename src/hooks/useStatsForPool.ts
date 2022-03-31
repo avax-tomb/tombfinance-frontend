@@ -3,6 +3,7 @@ import useTombFinance from './useTombFinance';
 import { Bank } from '../tomb-finance';
 import { PoolStats } from '../tomb-finance/types';
 import config from '../config';
+import { TBOND_TICKER } from '../utils/constants'
 
 const useStatsForPool = (bank: Bank) => {
   const tombFinance = useTombFinance();
@@ -14,7 +15,7 @@ const useStatsForPool = (bank: Bank) => {
   }, [tombFinance, bank]);
 
   useEffect(() => {
-    fetchAPRsForPool().catch((err) => console.error(`Failed to fetch TBOND price: ${err.stack}`));
+    fetchAPRsForPool().catch((err) => console.error(`Failed to fetch ${TBOND_TICKER} price: ${err.stack}`));
     const refreshInterval = setInterval(fetchAPRsForPool, config.refreshInterval);
     return () => clearInterval(refreshInterval);
   }, [setPoolAPRs, tombFinance, fetchAPRsForPool]);

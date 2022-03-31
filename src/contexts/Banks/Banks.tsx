@@ -3,6 +3,7 @@ import Context from './context';
 import useTombFinance from '../../hooks/useTombFinance';
 import { Bank } from '../../tomb-finance';
 import config, { bankDefinitions } from '../../config';
+import { TOMB_TICKER } from '../../utils/constants'
 
 const Banks: React.FC = ({ children }) => {
   const [banks, setBanks] = useState<Bank[]>([]);
@@ -45,7 +46,7 @@ const Banks: React.FC = ({ children }) => {
         ...bankInfo,
         address: config.deployments[bankInfo.contract].address,
         depositToken: tombFinance.externalTokens[bankInfo.depositTokenName],
-        earnToken: bankInfo.earnTokenName === 'TOMB' ? tombFinance.TOMB : tombFinance.TSHARE,
+        earnToken: bankInfo.earnTokenName === TOMB_TICKER ? tombFinance.TOMB : tombFinance.TSHARE,
         closedForStaking,
       });
     }

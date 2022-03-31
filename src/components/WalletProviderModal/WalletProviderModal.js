@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import WalletCard from './WalletCard';
 import { Modal, List } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import metamaskLogo from '../../assets/img/metamask-fox.svg';
-import walletConnectLogo from '../../assets/img/wallet-connect.svg';
+import metamaskLogo from '../../assets/img/wallet/metamask-fox.svg';
+import walletConnectLogo from '../../assets/img/wallet/wallet-connect.svg';
 import { useWallet } from 'use-wallet';
 
 const useStyles = makeStyles((theme) => ({

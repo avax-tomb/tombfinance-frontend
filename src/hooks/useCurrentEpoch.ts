@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import useTombFinance from './useTombFinance';
 import config from '../config';
 import { BigNumber } from 'ethers';
+import { TOMB_TICKER } from '../utils/constants'
 
 const useCurrentEpoch = () => {
   const [currentEpoch, setCurrentEpoch] = useState<BigNumber>(BigNumber.from(0));
@@ -12,7 +13,7 @@ const useCurrentEpoch = () => {
   }, [tombFinance]);
 
   useEffect(() => {
-    fetchCurrentEpoch().catch((err) => console.error(`Failed to fetch TOMB price: ${err.stack}`));
+    fetchCurrentEpoch().catch((err) => console.error(`Failed to fetch ${TOMB_TICKER} price: ${err.stack}`));
     const refreshInterval = setInterval(fetchCurrentEpoch, config.refreshInterval);
     return () => clearInterval(refreshInterval);
   }, [setCurrentEpoch, tombFinance, fetchCurrentEpoch]);

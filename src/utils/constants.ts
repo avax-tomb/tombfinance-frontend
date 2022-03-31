@@ -1,6 +1,6 @@
-export const TOMB_TICKER = 'TOMB';
-export const TSHARE_TICKER = 'TSHARE';
-export const TBOND_TICKER = 'TBOND';
+export const TOMB_TICKER = 'CROP';
+export const TSHARE_TICKER = 'WATER';
+export const TBOND_TICKER = 'BOND';
 export const FTM_TICKER = 'FTM';
 export const WFTM_TICKER = 'WFTM';
 export const SPOOKY_ROUTER_ADDR =

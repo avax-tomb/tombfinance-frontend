@@ -17,14 +17,12 @@ const CemeteryCard = ({ bank }) => {
                 top: '-5px',
                 height: '48px',
                 width: '48px',
-                borderRadius: '40px',
-                backgroundColor: 'white',
                 alignItems: 'center',
                 display: 'flex',
                 justifyContent: 'center',
               }}
             >
-              <TokenSymbol size={32} symbol={bank.depositTokenName} />
+              <TokenSymbol size={48} symbol={bank.depositTokenName} />
             </Box>
             <Typography variant="h5" component="h2">
               {bank.depositTokenName}
@@ -36,7 +34,7 @@ const CemeteryCard = ({ bank }) => {
           </Box>
         </CardContent>
         <CardActions style={{ justifyContent: 'flex-end' }}>
-          <Button color="primary" size="small" variant="contained" component={Link} to={`/cemetery/${bank.sectionInUI}/${bank.depositTokenName}`}>
+          <Button color="primary" size="small" variant="contained" component={Link} to={`/cemetery/${bank.sectionInUI}/${bank.poolId}`}>
             View
           </Button>
         </CardActions>
