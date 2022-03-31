@@ -1,5 +1,5 @@
 import React from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
 
 //Graveyard ecosystem logos
 import tombLogo from '../../assets/img/tokens/TOMB.png';
