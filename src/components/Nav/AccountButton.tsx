@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
-import { Button } from '@material-ui/core';
 import { useWallet } from 'use-wallet';
+import styled from 'styled-components';
 import useModal from '../../hooks/useModal';
 import WalletProviderModal from '../WalletProviderModal';
 import AccountModal from './AccountModal';
+
+const ButtonWrap = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 173px;
+  height: 40px;
+  background-color: #1C8242;
+  border-radius: 32px;
+  filter: drop-shadow(14px 8px 27px rgba(28, 130, 66, 0.3));
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+  cursor: pointer;
+`
 
 interface AccountButtonProps {
   text?: string;
@@ -28,13 +43,13 @@ const AccountButton: React.FC<AccountButtonProps> = ({ text }) => {
   return (
     <div>
       {!account ? (
-        <Button onClick={handleWalletProviderOpen} color="primary" variant="contained">
+        <ButtonWrap onClick={handleWalletProviderOpen}>
           {buttonText}
-        </Button>
+        </ButtonWrap>
       ) : (
-        <Button variant="contained" onClick={onPresentAccountModal}>
-          My Wallet
-        </Button>
+        <ButtonWrap onClick={onPresentAccountModal}>
+          Connect
+        </ButtonWrap>
       )}
 
       <WalletProviderModal open={isWalletProviderOpen} handleClose={handleWalletProviderClose} />

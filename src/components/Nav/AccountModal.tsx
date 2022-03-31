@@ -24,14 +24,15 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
 
   return (
     <Modal>
-      <ModalTitle text="My Wallet" />
-
+      <StyledTitle>
+        <ModalTitle text="MY WALLET" />
+      </StyledTitle>
       <Balances>
         <StyledBalanceWrapper>
           <TokenSymbol symbol={TOMB_TICKER} />
           <StyledBalance>
             <StyledValue>{displayTombBalance}</StyledValue>
-            <Label text={`${TOMB_TICKER} Available`} />
+            <Label text={`${TOMB_TICKER} Available`} color="#FFFFFF" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
@@ -39,7 +40,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
           <TokenSymbol symbol={TSHARE_TICKER} />
           <StyledBalance>
             <StyledValue>{displayTshareBalance}</StyledValue>
-            <Label text={`${TSHARE_TICKER} Available`} />
+            <Label text={`${TSHARE_TICKER} Available`} color="#FFFFFF" />
           </StyledBalance>
         </StyledBalanceWrapper>
 
@@ -47,7 +48,7 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
           <TokenSymbol symbol={TBOND_TICKER} />
           <StyledBalance>
             <StyledValue>{displayTbondBalance}</StyledValue>
-            <Label text={`${TBOND_TICKER} Available`} />
+            <Label text={`${TBOND_TICKER} Available`} color="#FFFFFF" />
           </StyledBalance>
         </StyledBalanceWrapper>
       </Balances>
@@ -55,30 +56,52 @@ const AccountModal: React.FC<ModalProps> = ({ onDismiss }) => {
   );
 };
 
+const StyledTitle = styled.div`
+  margin-top: 45px;
+
+  > div {
+    font-size: 60px;
+    font-weight: bold;
+    text-align: center;
+  }
+`;
+
 const StyledValue = styled.div`
-  //color: ${(props) => props.theme.color.grey[300]};
-  font-size: 30px;
-  font-weight: 700;
+  color: white;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 37px;
 `;
 
 const StyledBalance = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin-left: 24px;
 `;
 
 const Balances = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-bottom: ${(props) => props.theme.spacing[4]}px;
+  margin-top: 20px;
 `;
 
 const StyledBalanceWrapper = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column;
-  margin: 0 ${(props) => props.theme.spacing[3]}px;
+  width: 100%;
+  max-width: 300px;
+  background-color: #1C8242;
+  border-radius: 44px;
+  padding: 10px;
+  filter: drop-shadow(14px 8px 27px rgba(28, 130, 66, 0.3));
+
+  &:not(:last-child) {
+    margin-bottom: 20px;
+  }
 `;
 
 export default AccountModal;

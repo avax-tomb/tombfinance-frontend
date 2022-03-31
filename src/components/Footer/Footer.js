@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: '15px',
     width: '100%',
     color: 'white',
-    backgroundColor: '#121212',
+    backgroundColor: '#ffffff',
     textAlign: 'center',
     height: '1.3rem',
     [theme.breakpoints.down('xs')]: {
@@ -41,7 +41,7 @@ const Footer = () => {
       <Container maxWidth="lg">
         <Grid container>
           <Grid item xs={6}>
-            <Typography variant="body2" color="textSecondary" align="left">
+            <Typography style={{ color: '#1C8242' }} variant="body2" align="left">
               {'Copyright © '}
               <Link color="inherit" href="/">
                 Ranch Finance

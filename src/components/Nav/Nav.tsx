@@ -7,7 +7,6 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  Typography,
   useMediaQuery,
   List,
   ListItem,
@@ -22,6 +21,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import AccountButton from './AccountButton';
+import brandLogo from '../../assets/img/brand.png';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -32,11 +32,16 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   appBar: {
-    color: '#e0e3bd',
-    'background-color': '#121212',
-    // borderBottom: `1px solid ${theme.palette.divider}`,
+    padding: '10px 150px',
+    marginBottom: '3rem',
+    backgroundColor: '#FFFFFF',
+    filter: 'drop-shadow(14px 8px 27px rgba(28, 130, 66, 0.16))'
+  },
+  mobileAppBar: {
     padding: '10px',
     marginBottom: '3rem',
+    backgroundColor: '#FFFFFF',
+    filter: 'drop-shadow(14px 8px 27px rgba(28, 130, 66, 0.16))'
   },
   drawer: {
     width: 240,
@@ -51,7 +56,8 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     flexWrap: 'wrap',
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    minHeight: 'unset'
   },
   toolbarTitle: {
     // fontFamily: '"Amarante", cursive',
@@ -60,8 +66,8 @@ const useStyles = makeStyles((theme) => ({
   },
   link: {
     textTransform: 'uppercase',
-    color: '#e0e3bd',
-    fontSize: '14px',
+    color: '#209FD2',
+    fontSize: '18px',
     margin: theme.spacing(1, 2),
     textDecoration: 'none',
     '&:hover': {
@@ -69,11 +75,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   brandLink: {
-    textDecoration: 'none',
-    color: '#e0e3bd',
-    '&:hover': {
-      textDecoration: 'none',
-    },
+    '& img': {
+      height: '42px'
+    }
   },
 }));
 
@@ -92,15 +96,13 @@ const Nav = () => {
   };
 
   return (
-    <AppBar position="sticky" elevation={0} className={classes.appBar}>
+    <AppBar position="sticky" elevation={0} className={matches ? classes.appBar : classes.mobileAppBar}>
       <Toolbar className={classes.toolbar}>
         {matches ? (
           <>
-            <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
-              <Link to="/" color="inherit" className={classes.brandLink}>
-                Ranch Finance
-              </Link>
-            </Typography>
+            <Link to="/" color="inherit" className={classes.brandLink}>
+              <img src={brandLogo} alt="brand" />
+            </Link>
             <Box mr={5}>
               <Link color="textPrimary" to="/" className={classes.link}>
                 Home
@@ -134,9 +136,9 @@ const Nav = () => {
             >
               <MenuIcon />
             </IconButton>
-            <Typography variant="h6" noWrap>
-              Ranch Finance
-            </Typography>
+            <Link to="/" color="inherit" className={classes.brandLink}>
+              <img src={brandLogo} alt="brand" />
+            </Link>
 
             <Drawer
               className={classes.drawer}
